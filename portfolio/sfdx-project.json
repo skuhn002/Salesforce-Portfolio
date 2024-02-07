@@ -2,11 +2,22 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "default": true
+      "default": false
+    },
+    {
+      "path": "dev1",
+      "package": "dev-pkg-1v0",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "default": true,
+      "versionDescription": "1st Development Pkg - v0"
     }
   ],
   "name": "portfolio",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "59.0"
+  "sourceApiVersion": "59.0",
+  "packageAliases": {
+    "dev-pkg-1v0": "0Hoak00000000o1CAA"
+  }
 }
