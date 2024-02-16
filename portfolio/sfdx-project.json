@@ -8,7 +8,7 @@
       "path": "dev1",
       "package": "dev-pkg-1v0",
       "versionName": "ver 0.1",
-      "versionNumber": "0.1.0.NEXT",
+      "versionNumber": "0.1.1.NEXT",
       "default": true,
       "versionDescription": "1st Development Pkg - v0"
     }
