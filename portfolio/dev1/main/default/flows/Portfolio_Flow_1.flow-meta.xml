@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>60.0</apiVersion>
+    <assignments>
+        <description>Contact=Prospect</description>
+        <name>Assign_Input_to_Prospect_Record</name>
+        <label>Assign_Input_to_Prospect_Record</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>Prospect_To_Add.FirstName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NP_Name.firstName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Prospect_To_Add.LastName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NP_Name.lastName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Prospect_To_Add.Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NP_Email.value</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Prospect</targetReference>
+        </connector>
+    </assignments>
     <environments>Default</environments>
     <interviewLabel>Portfolio_Flow_1 {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Portfolio_Flow_1</label>
@@ -23,40 +54,112 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Prospect</name>
+        <label>Create Prospect</label>
+        <locationX>176</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference>Outro_1</targetReference>
+        </connector>
+        <inputReference>Prospect_To_Add</inputReference>
+    </recordCreates>
+    <screens>
+        <name>Contact_Info_Prompt</name>
+        <label>Contact_Info_Prompt</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_Input_to_Prospect_Record</targetReference>
+        </connector>
+        <fields>
+            <name>Copy_1_of_NP_1</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;What&apos;s your email address?﻿&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>NP_Email</name>
+            <extensionName>flowruntime:email</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <nextOrFinishButtonLabel>Done</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
     <screens>
         <name>Intro_1</name>
         <label>Intro_1</label>
         <locationX>176</locationX>
         <locationY>134</locationY>
-        <allowBack>true</allowBack>
+        <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
+        <allowPause>false</allowPause>
         <connector>
-            <targetReference>Outro_1</targetReference>
+            <targetReference>Name_Prompt</targetReference>
         </connector>
         <fields>
             <name>Hello_1</name>
-            <fieldText>&lt;p&gt;Hello World :)&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Leave Your Contact Info&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
+        <nextOrFinishButtonLabel>Here</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
     </screens>
     <screens>
-        <name>Outro_1</name>
-        <label>Outro_1</label>
+        <name>Name_Prompt</name>
+        <label>Name_Prompt</label>
         <locationX>176</locationX>
         <locationY>242</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Contact_Info_Prompt</targetReference>
+        </connector>
         <fields>
-            <name>Outro_Text</name>
-            <fieldText>&lt;p&gt;Goodbye :)&lt;/p&gt;</fieldText>
+            <name>NP_1</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;What&apos;s your name?&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
+        <fields>
+            <name>NP_Name</name>
+            <extensionName>flowruntime:name</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Outro_1</name>
+        <label>Outro_1</label>
+        <locationX>176</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Outro_Text</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Thank you, {!NP_Name.firstName}!&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;We&apos;ll be in contact soon :)&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
     </screens>
     <start>
         <locationX>50</locationX>
@@ -66,4 +169,12 @@
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>Prospect_To_Add</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Contact</objectType>
+    </variables>
 </Flow>

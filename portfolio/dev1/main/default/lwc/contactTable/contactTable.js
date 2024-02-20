@@ -7,6 +7,7 @@ export default class ContactTable extends LightningElement {
         { label: 'First Name', fieldName: 'FirstName' },
         { label: 'Last Name', fieldName: 'LastName' },
         { label: 'Email', fieldName: 'Email', type: 'email' },
+        { label: 'Birthdate', fieldName: 'Birthdate', type: 'date' }
     ];
 
     @wire(getContacts)
