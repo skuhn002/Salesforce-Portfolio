@@ -1,4 +1,4 @@
-public without sharing class ContactController {
+public with sharing class ContactController {
     @AuraEnabled(cacheable=true)
     public static List<Contact> getContacts() {
         // Define the fields you want to access
