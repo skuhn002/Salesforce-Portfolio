@@ -5,9 +5,12 @@
         <name>Flow</name>
     </types>
     <types>
+        <!--
         <members>resume</members>
         <members>body</members>
         <members>container</members>
+        -->
+        <members>speech2Text</members>
         <name>LightningComponentBundle</name>
     </types>
     <version>59.0</version>

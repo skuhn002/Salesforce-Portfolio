@@ -1,3 +1,26 @@
 <template>
-    
+    <lightning-card variant="base">
+        <p style="text-align: center; font-weight: bold;">Turn Speech Into Text</p>
+        <br></br>
+        <div class="slds-p-around_medium" style="text-align: center;">
+            <template lwc:if={recordingState}>
+                <lightning-button label="Stop Transcribing" onclick={toggleRecording}>
+                    <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                </lightning-button>
+            </template>
+            <template lwc:else>
+                <lightning-button label="Start Transcribing" onclick={toggleRecording}>
+                    <lightning-icon icon-name="utility:info" size="small"></lightning-icon>
+                </lightning-button>
+            </template>
+            <lightning-button label="Clear" onclick={clearTranscript} style="margin-left: 10px;">
+                <lightning-icon icon-name="utility:clear" size="small"></lightning-icon>
+            </lightning-button>
+            <template lwc:if={transcript}>
+                <div class="slds-m-top_medium" style="text-align: center;">
+                    <lightning-formatted-text value={transcript}></lightning-formatted-text>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
 </template>
