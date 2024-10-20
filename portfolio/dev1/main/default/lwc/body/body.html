@@ -1,31 +1,36 @@
 <template>
-    <!-- <br/>
-    <div class="slds-p-around_medium" style="text-align:center">
-        <p style="font-size: 1.5rem; line-spacing: 3vw; font-weight: bold">Sam Kuhn</p>
-        <br/>
-        <p>Software Engineer</p>
-    </div> -->
-    <br/>
-    <!-- <c-contact-table></c-contact-table> -->
-    <lightning-card variant="base">
-        <div class="slds-p-around_medium">
-            <lightning-flow 
-            flow-api-name='Portfolio_Flow_1'>
-        </lightning-flow>
+    <!--Home Page-->
+    <template if:true={isHomePage}>
+        <div style="text-align: center; margin: 20px;">
+            <h1>Welcome to my Portfolio!</h1>
         </div>
-    </lightning-card>
-    <br/>
-    <lightning-card variant="base">
-        <div class="slds-p-around_medium">
-            <c-speech2-text></c-speech2-text>
-        </div>
-    </lightning-card>
-    <br/>
-    <lightning-card variant="base">
-        <div class="slds-p-around_medium">
-            <!-- <p>{message}</p> -->
-             <c-resume></c-resume>
-        </div>
-    </lightning-card>
-    <br/>
+        <lightning-card variant="base" style="">
+            <div class="slds-p-around_medium">
+                <lightning-flow 
+                flow-api-name='Portfolio_Flow_1'>
+            </lightning-flow>
+            </div>
+        </lightning-card>
+    </template>
+
+    <!--Speech 2 Text Page-->
+    <template if:true={isS2TPage}>
+        <br></br>
+        <lightning-card variant="base">
+            <div class="slds-p-around_medium">
+                <c-speech2-text></c-speech2-text>
+            </div>
+        </lightning-card>
+    </template>
+
+    <!--Resume Page-->
+    <template if:true={isResumePage}>
+        <br></br>
+        <lightning-card variant="base">
+            <div class="slds-p-around_medium">
+                <!-- <p>{message}</p> -->
+                 <c-resume></c-resume>
+            </div>
+        </lightning-card>
+    </template>
 </template>

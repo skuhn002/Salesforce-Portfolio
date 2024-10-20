@@ -6,12 +6,19 @@
     </types>
     <types>
         <!--
-        <members>resume</members>
-        <members>body</members>
-        <members>container</members>
-        -->
         <members>speech2Text</members>
+        <members>resume</members>
+        <members>container</members>
+        <members>header</members>
+        <members>body</members>
+        -->
         <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <!--
+        <members>NavigationMessageChannel</members>
+        -->
+        <name>LightningMessageChannel</name>
     </types>
     <version>59.0</version>
 </Package>

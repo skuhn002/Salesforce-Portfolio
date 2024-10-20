@@ -1,10 +1,22 @@
 <template>
     <lightning-card>
-        <div class="slds-m-around_medium">
+        <!-- <div class="slds-m-around_medium">
             <lightning-button-menu>
-                <lightning-menu-item value="MenuItemOne" label="Login" href="/login"></lightning-menu-item>
-                <!--<lightning-menu-item value="MenuItemOne" label="Register" href="/SelfRegister"></lightning-menu-item>-->
+                <lightning-menu-item value="MenuItemOne" label="Home" onclick={navToHome}></lightning-menu-item>
+                <lightning-menu-item value="MenuItemOne" label="Resume" onclick={navToResume}></lightning-menu-item>
+                <lightning-menu-item value="MenuItemOne" label="Speech to Text" onclick={navToS2T}></lightning-menu-item>
             </lightning-button-menu>
+        </div> -->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+                <a href="#" onclick={navToResume}>Resume</a>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <a href="#" onclick={navToHome}>Home</a>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <a href="#" onclick={navToS2T}>Speech to Text</a>
+            </div>
         </div>
     </lightning-card>    
 </template>
